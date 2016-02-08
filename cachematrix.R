@@ -3,38 +3,34 @@
 
 ## Write a short comment describing this function
 ## A pair of functions that cache the inverse of a matrix
-## makeCacheMatrix:creates a special "matrix" object that can cache its inverse.
 
 makeCacheMatrix <- function(x = matrix()) {
-	## Initialize the inverse property
+	## Initialize the inverse
 	m<-NULL
 
-	## Method to set the matrix
+	## Set the matrix
 	set<-function(y){
-	x<<-y
-	m<<-NULL
+		x<<-y
+		m<<-NULL
 	}
-	## Method the get the matrix
+	## Get the matrix
 	get <- function() {
-	## Return the matrix
-	x
+		x
 	}
-	## Method to set the inverse of the matrix
+	## Set the inverse of the matrix
 	setInverse <- function(inverse) {
-	i <<- inverse
+		i <<- inverse
 	}
-	## Method to get the inverse of the matrix
+	## Get the inverse of the matrix
 	getInverse <- function() {
-	## Return the inverse property
-	m
+		m
 	}
-	## Return a list of the methods
+	## Return the list of methods
 	list(set = set, get = get,
 		setInverse = setInverse,
 		getInverse = getInverse)
 
 }
-
 
 ## Write a short comment describing this function
 ## cacheSolve: computes the inverse of the special "matrix" returned by makeCacheMatrix above. 
@@ -46,8 +42,8 @@ cacheSolve <- function(x, ...) {
 	m <- x$getInverse()
 	## Return the inverse if its already set
 	if( !is.null(m) ) {
-	  message("getting cached data")
-	  return(m)
+		message("getting cached data")
+		return(m)
 	}
 	## Get the matrix from our object
 	data <- x$get()
@@ -55,6 +51,6 @@ cacheSolve <- function(x, ...) {
 	m <- solve(data) %*% data
 	## Set the inverse to the object
 	x$setInverse(m)
-	## Return the matrix
+	
 	m      
 }
